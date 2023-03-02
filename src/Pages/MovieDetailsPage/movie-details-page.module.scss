@@ -1,0 +1,35 @@
+.btn {
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    background-color:#ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: aqua;
+        border-color: aqua;
+    }
+}
+
+.wrapper {
+    margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.box {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info {
+    margin-bottom: 12px;
+}
+
+.item:not(:last-child) {
+    margin-bottom: 8px;
+}

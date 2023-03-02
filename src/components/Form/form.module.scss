@@ -1,0 +1,39 @@
+.form {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.field {
+  padding: 8px 12px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  outline: none;
+
+  font-size: 14px;
+
+  &:focus-within {
+    border-color: aqua;
+  }
+}
+
+.btn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+
+  color: #000000;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background-color: aqua;
+    border-color: aqua;
+  }
+}

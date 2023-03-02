@@ -1,6 +1,18 @@
 .navMenu {
-    padding: 20px 36px;
+  padding: 20px 36px;
 
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.link {
+  color: #000000;
+
+  &:global(.active) {
+    color: #ffffff;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

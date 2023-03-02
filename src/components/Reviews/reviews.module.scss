@@ -1,0 +1,11 @@
+.list {
+  padding: 18px;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 18px;
+}
+
+.title {
+  margin-bottom: 8px;
+}

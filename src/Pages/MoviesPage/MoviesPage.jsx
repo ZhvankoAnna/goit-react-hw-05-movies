@@ -1,24 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { getMoviesBySearchQuery } from 'shared/api/getMoviesAPI';
+import notification from 'shared/services/notification';
+import { ToastContainer } from 'react-toastify';
+import Form from 'components/Form/Form';
+import MoviesList from 'components/MoviesList/MoviesList';
+import Container from 'components/Container/Container';
 
 const MoviesPage = () => {
-    const [search, setSearch] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
 
-    const handleInput = ({target}) => {
-        setSearch(target.value);
-        console.log(target.value)
+  useEffect(() => {
+    const fetchMoviesSearch = async () => {
+      try {
+        const { data } = await getMoviesBySearchQuery(search);
+        if (data.results.length === 0) {
+          notification('Please enter a valid query.');
+        }
+        setMovies(data.results);
+      } catch (error) {
+        notification('Please enter a valid query.');
+      }
+    };
+    if (search) {
+      fetchMoviesSearch();
     }
+  }, [search]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+  const onFormSubmit = ({ search }) => {
+    if (search.trim() === '') {
+      notification('Please enter a valid query.');
+      return;
     }
+    setSearchParams({ search });
+  };
 
   return (
     <main>
-      <form>
-        <input onChange={handleInput} type="text" value={search} required/>
-        <button type="submit">Search</button>
-      </form>
+      <Container>
+        <Form onSubmit={onFormSubmit} />
+        {movies !== [] && <MoviesList items={movies} />}
+      </Container>
+      <ToastContainer />
     </main>
   );
 };
